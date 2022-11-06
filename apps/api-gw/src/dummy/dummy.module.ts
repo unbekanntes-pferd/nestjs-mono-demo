@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { DummyService } from './dummy.service';
 import { DummyController } from './dummy.controller';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 
@@ -13,7 +12,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
       },
     ]),
   ],
-  providers: [DummyService],
+  providers: [],
   controllers: [DummyController],
 })
 export class DummyModule {}
