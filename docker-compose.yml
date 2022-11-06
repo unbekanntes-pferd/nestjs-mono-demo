@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  dummy-db:
+    container_name: dummy-db
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: 'admin'
+      POSTGRES_PASSWORD: 'admin'
+      POSTGRES_DB: 'dummy'
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - db-dummy:/var/lib/postgresql/data
+    ports:
+      - '3306:5432'
+    networks:
+      - app
+  dummy2-db:
+    container_name: dummy2-db
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: 'admin'
+      POSTGRES_PASSWORD: 'admin'
+      POSTGRES_DB: 'dummy2'
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - db-dummy2:/var/lib/postgresql/data
+    ports:
+      - '3307:5432'
+    networks:
+      - app
+# NETWORKS
+networks:
+  app:
+    driver: bridge
+
+# VOLUMES
+volumes:
+  db-dummy:
+    driver: local
+  db-dummy2:
+    driver: local
